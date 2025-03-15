@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5fe2ce4f.css",
+    "main.js": "/static/js/main.6ee30e82.js",
+    "static/media/portfolio.jpg": "/static/media/portfolio.cbdaed88211b2a46690a.jpg",
+    "static/media/weather.jpg": "/static/media/weather.e4f60c58c4634f447833.jpg",
+    "static/media/ecommerce.jpg": "/static/media/ecommerce.2b197959ccdf6ed79f5a.jpg",
+    "static/media/profile-pic.webp": "/static/media/profile-pic.d0b5bb9b61d0ab6e088f.webp",
+    "static/media/flexbox.png": "/static/media/flexbox.baf9c9bbd7c26566cb87.png",
+    "static/media/task.jpg": "/static/media/task.623f3da186bf0d254f33.jpg",
+    "static/media/blog.jpg": "/static/media/blog.5a74a2894d53fe8e33d8.jpg",
+    "static/media/nodejs.jpeg": "/static/media/nodejs.bcae89e3ff05aa3b650f.jpeg",
+    "static/media/owp.png": "/static/media/owp.cc5fc2dc5a0fa6caf978.png",
+    "static/media/react-hooks.png": "/static/media/react-hooks.503189974e01623fd2cc.png",
+    "static/media/typescript.png": "/static/media/typescript.c621a27709a4dfd9282a.png",
+    "index.html": "/index.html",
+    "main.5fe2ce4f.css.map": "/static/css/main.5fe2ce4f.css.map",
+    "main.6ee30e82.js.map": "/static/js/main.6ee30e82.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5fe2ce4f.css",
+    "static/js/main.6ee30e82.js"
+  ]
+}

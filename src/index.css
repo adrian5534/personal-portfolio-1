@@ -1,0 +1,328 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 60px 20px; /* Increase padding for a more spacious look */
+  color: white;
+  text-align: center;
+}
+
+.App-header h1 {
+  font-size: 3em; /* Increase font size for the header text */
+  margin: 0;
+  padding: 20px 0; /* Add padding to the header text */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a text shadow for better readability */
+}
+
+main {
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 40px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  color: #282c34;
+}
+
+/* Navbar Component Styles */
+.Navbar {
+  background-color: #343a40;
+  padding: 10px 20px;
+  margin: 0; /* Remove margin to ensure the navbar spans the full width */
+  border-radius: 0; /* Remove border-radius for a full-width navbar */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for better visibility */
+}
+
+.Navbar .navbar-brand {
+  color: white !important;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.Navbar .nav-link {
+  color: white !important;
+  margin-right: 15px;
+  transition: color 0.3s ease;
+}
+
+.Navbar .nav-link:hover {
+  color: #ddd !important;
+}
+
+.Navbar .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.Navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Bio Component Styles */
+#bio {
+  background-color: #f0f0f0;
+  padding: 40px 20px;
+  border-radius: 8px;
+}
+
+#bio h2 {
+  margin-bottom: 20px;
+}
+
+#bio p {
+  margin-bottom: 10px;
+}
+
+#bio img {
+  max-width: 100%;
+  border-radius: 50%;
+}
+
+#bio .text-center {
+  text-align: center;
+}
+
+/* Resume Component Styles */
+#resume h3 {
+  margin-top: 20px;
+}
+
+#resume ul {
+  padding-left: 20px;
+}
+
+#resume ul li {
+  list-style-type: disc;
+}
+
+#resume .list-group-item {
+  background-color: transparent;
+  border: none;
+  padding-left: 0;
+}
+
+#resume h5 {
+  margin-bottom: 5px;
+}
+
+#resume p {
+  margin-bottom: 5px;
+}
+
+#resume ul {
+  margin-bottom: 10px;
+}
+
+/* Projects Component Styles */
+#projects .card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+#projects .card:hover {
+  transform: translateY(-10px);
+}
+
+#projects .card-title {
+  color: #282c34;
+}
+
+#projects .card-text {
+  margin-bottom: 10px;
+}
+
+#projects .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+#projects .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+#projects .card-img-top {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9; /* Maintain a 16:9 aspect ratio */
+  object-fit: cover; /* Ensure the images cover the entire area while maintaining aspect ratio */
+}
+
+#projects .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#projects .card-body .btn {
+  margin-top: auto;
+}
+
+/* Blog Component Styles */
+#blog .card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+#blog .card:hover {
+  transform: translateY(-10px);
+}
+
+#blog .card-title {
+  color: #282c34;
+}
+
+#blog .card-text {
+  margin-bottom: 10px;
+}
+
+#blog .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+#blog .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+#blog .card-img-top {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9; /* Maintain a 16:9 aspect ratio */
+  object-fit: cover; /* Ensure the images cover the entire area while maintaining aspect ratio */
+}
+
+/* Contact Component Styles */
+#contact {
+  background-color: #f0f0f0;
+  padding: 40px 20px;
+  border-radius: 8px;
+}
+
+#contact h2 {
+  margin-bottom: 20px;
+}
+
+#contact p {
+  margin-bottom: 10px;
+}
+
+#contact form {
+  margin-top: 20px;
+}
+
+#contact .fas {
+  margin-right: 10px;
+}
+
+#contact .form-group {
+  margin-bottom: 20px;
+}
+
+#contact .form-control {
+  border-radius: 4px;
+  padding: 10px;
+}
+
+#contact .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+#contact .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+#contact .form-group:last-of-type {
+  margin-bottom: 30px; /* Add space between the last form group and the button */
+}
+
+#contact .btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-top: 20px; /* Add space at the top of the button */
+  margin-bottom: 20px; /* Add space at the bottom of the button */
+}
+
+/* Footer Component Styles */
+.footer {
+  background-color: #282c34;
+  color: white;
+  padding: 20px 0;
+}
+
+.footer a {
+  color: white;
+  margin: 0 10px;
+}
+
+.footer a:hover {
+  color: #ddd;
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+  .App-header {
+    padding: 40px 10px; /* Reduce padding for smaller screens */
+  }
+
+  .App-header h1 {
+    font-size: 2em; /* Reduce font size for smaller screens */
+  }
+
+  .Navbar {
+    margin: 0; /* Remove margin for smaller screens */
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  .Navbar .nav-link {
+    margin-right: 10px; /* Reduce margin between nav links */
+  }
+
+  main {
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+
+  section {
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+
+  h2 {
+    font-size: 1.5em; /* Adjust font size for smaller screens */
+  }
+
+  #bio img {
+    max-width: 80%; /* Adjust image size for smaller screens */
+  }
+
+  .footer {
+    padding: 10px 0; /* Reduce padding for smaller screens */
+  }
+}
