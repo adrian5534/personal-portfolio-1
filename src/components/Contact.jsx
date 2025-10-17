@@ -7,7 +7,6 @@ import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/contact.css';
 
-// Plan catalog (no add‑on selection here)
 const planCatalog = {
   starter: { key: 'starter', title: 'Starter Website – Small Business', price: 1500 },
   business: { key: 'business', title: 'Business Growth Website – Professional', price: 3000 },
@@ -18,13 +17,7 @@ const currency = (n) => `$${n.toLocaleString()}`;
 
 function Contact() {
   const {
-    register,
-    handleSubmit,
-    control,
-    reset,
-    setValue,
-    getValues,
-    watch,
+    register, handleSubmit, control, reset, setValue, getValues, watch,
     formState: { errors, isSubmitting }
   } = useForm({
     defaultValues: {
@@ -41,7 +34,6 @@ function Contact() {
       timeline: '',
       date: null,
       message: '',
-      // calculated (for future Netlify Stripe function / email)
       selectedPlan: '',
       estimatedTotal: ''
     }
@@ -49,13 +41,9 @@ function Contact() {
 
   const planKey = watch('planKey');
   const plan = planKey ? planCatalog[planKey] : null;
-
-  // Track whether we auto-filled the message so we don't overwrite user edits
   const wasAutoFilledRef = useRef(false);
-
   const [selection, setSelection] = useState(null);
 
-  // Read preselected plan from URL
   useEffect(() => {
     const getParams = () => {
       if (window.location.search) return new URLSearchParams(window.location.search.slice(1));
@@ -63,21 +51,17 @@ function Contact() {
       const idx = hash.indexOf('?');
       return new URLSearchParams(idx !== -1 ? hash.slice(idx + 1) : '');
     };
-
     const applyFromLocation = () => {
       const params = getParams();
       const fromKey = params.get('planKey');
       const fromTitle = params.get('plan');
       let key = fromKey;
-      if (!key && fromTitle) {
-        key = Object.keys(planCatalog).find(k => planCatalog[k].title === fromTitle) || '';
-      }
+      if (!key && fromTitle) key = Object.keys(planCatalog).find(k => planCatalog[k].title === fromTitle) || '';
       if (key && planCatalog[key]) {
         setValue('planKey', key, { shouldValidate: true, shouldDirty: true });
         setSelection({ plan: planCatalog[key].title });
       }
     };
-
     applyFromLocation();
     const onHash = () => applyFromLocation();
     const onPop = () => applyFromLocation();
@@ -89,7 +73,6 @@ function Contact() {
     };
   }, [setValue]);
 
-  // Prefill/clear the message based on selected plan
   useEffect(() => {
     const current = getValues('message') || '';
     if (!plan) {
@@ -99,16 +82,13 @@ function Contact() {
       }
       return;
     }
-
     const autoMsg = `I'm interested in the ${plan.title} (${currency(plan.price)}${plan.priceSuffix || ''}) package. Please share next steps.`;
-    // Only set if empty or previously auto-filled
     if (!current || wasAutoFilledRef.current) {
       setValue('message', autoMsg);
       wasAutoFilledRef.current = true;
     }
   }, [plan, getValues, setValue]);
 
-  // Keep calculated fields updated
   useEffect(() => {
     if (!plan) {
       setValue('selectedPlan', '');
@@ -120,28 +100,53 @@ function Contact() {
   }, [plan, setValue]);
 
   const onSubmit = async (values) => {
-    // Prepare payload for future Netlify Stripe function
-    const order = {
-      planKey: values.planKey,
+    const payload = {
+      planKey: values.planKey || '',
       planTitle: plan?.title || '',
-      basePrice: plan?.price || 0,
-      totals: { base: plan?.price || 0, grand: plan?.price || 0 },
-      customer: {
-        name: values.name,
-        email: values.email,
-        phone: values.phone,
-        company: values.company,
-        website: values.website,
-        city: values.city,
-        region: values.region,
-      },
-      notes: values.message,
-      preferredDate: values.date ? values.date.toISOString().slice(0, 10) : null,
+      estimatedTotal: plan ? currency(plan.price) : '',
+      name: values.name.trim(),
+      email: values.email.trim(),
+      phone: values.phone.trim(),
+      company: values.company.trim(),
+      website: values.website.trim(),
+      city: values.city.trim(),
+      region: values.region.trim(),
+      timeline: values.timeline || '',
+      preferredDate: values.date ? values.date.toISOString().slice(0, 10) : '',
+      message: values.message.trim(),
     };
 
-    console.log('Inquiry order:', order);
-    toast.success('Thanks! Your inquiry has been sent.');
-    reset({ ...getValues() });
+    try {
+      const res = await fetch('/.netlify/functions/send-contact-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body.error || 'Failed to send message');
+
+      toast.success('Thanks! Your inquiry has been sent.');
+      reset({
+        planKey: '',
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        website: '',
+        city: '',
+        region: '',
+        projectType: '',
+        budget: '',
+        timeline: '',
+        date: null,
+        message: '',
+        selectedPlan: '',
+        estimatedTotal: ''
+      });
+      setSelection(null);
+    } catch (e) {
+      toast.error(e.message || 'Unable to send message. Please try again.');
+    }
   };
 
   return (
@@ -179,19 +184,14 @@ function Contact() {
               )}
 
               <Form noValidate autoComplete="on" onSubmit={handleSubmit(onSubmit)}>
-                {/* Hidden calculated fields */}
                 <input type="hidden" {...register('selectedPlan')} />
                 <input type="hidden" {...register('estimatedTotal')} />
 
                 <Row className="g-3">
-                  {/* Plan selection only */}
                   <Col sm={12}>
                     <Form.Group controlId="contactPlan">
                       <Form.Label>Select a plan (optional)</Form.Label>
-                      <Form.Select
-                        aria-label="Select a plan"
-                        {...register('planKey')}
-                      >
+                      <Form.Select aria-label="Select a plan" {...register('planKey')}>
                         <option value="">Choose a plan…</option>
                         {Object.values(planCatalog).map(p => (
                           <option key={p.key} value={p.key}>
@@ -199,13 +199,10 @@ function Contact() {
                           </option>
                         ))}
                       </Form.Select>
-                      <Form.Text className="text-muted">
-                        You can skip this and just send a message.
-                      </Form.Text>
+                      <Form.Text className="text-muted">You can skip this and just send a message.</Form.Text>
                     </Form.Group>
                   </Col>
 
-                  {/* Contact fields */}
                   <Col sm={12}>
                     <Form.Group controlId="contactName">
                       <Form.Label>Name</Form.Label>
@@ -216,9 +213,7 @@ function Contact() {
                         isInvalid={!!errors.name}
                         {...register('name', { required: 'Name is required' })}
                       />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.name?.message}
-                      </Form.Control.Feedback>
+                      <Form.Control.Feedback type="invalid">{errors.name?.message}</Form.Control.Feedback>
                     </Form.Group>
                   </Col>
 
@@ -232,76 +227,45 @@ function Contact() {
                         isInvalid={!!errors.email}
                         {...register('email', {
                           required: 'Email is required',
-                          pattern: {
-                            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                            message: 'Enter a valid email'
-                          }
+                          pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Enter a valid email' }
                         })}
                       />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.email?.message}
-                      </Form.Control.Feedback>
+                      <Form.Control.Feedback type="invalid">{errors.email?.message}</Form.Control.Feedback>
                     </Form.Group>
                   </Col>
 
                   <Col md={6}>
                     <Form.Group controlId="contactPhone">
                       <Form.Label>Phone (optional)</Form.Label>
-                      <Form.Control
-                        type="tel"
-                        placeholder="(555) 555-1234"
-                        inputMode="tel"
-                        autoComplete="tel"
-                        {...register('phone')}
-                      />
+                      <Form.Control type="tel" placeholder="(555) 555-1234" inputMode="tel" autoComplete="tel" {...register('phone')} />
                     </Form.Group>
                   </Col>
 
                   <Col md={6}>
                     <Form.Group controlId="contactCompany">
                       <Form.Label>Company/Business</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Your company"
-                        autoComplete="organization"
-                        {...register('company')}
-                      />
+                      <Form.Control type="text" placeholder="Your company" autoComplete="organization" {...register('company')} />
                     </Form.Group>
                   </Col>
 
                   <Col md={6}>
                     <Form.Group controlId="contactWebsite">
                       <Form.Label>Website (optional)</Form.Label>
-                      <Form.Control
-                        type="url"
-                        placeholder="https://example.com"
-                        autoComplete="url"
-                        {...register('website')}
-                      />
+                      <Form.Control type="url" placeholder="https://example.com" autoComplete="url" {...register('website')} />
                     </Form.Group>
                   </Col>
 
                   <Col md={6}>
                     <Form.Group controlId="contactCity">
                       <Form.Label>City (optional)</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="City"
-                        autoComplete="address-level2"
-                        {...register('city')}
-                      />
+                      <Form.Control type="text" placeholder="City" autoComplete="address-level2" {...register('city')} />
                     </Form.Group>
                   </Col>
 
                   <Col md={6}>
                     <Form.Group controlId="contactRegion">
                       <Form.Label>State/Region (optional)</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="State or region"
-                        autoComplete="address-level1"
-                        {...register('region')}
-                      />
+                      <Form.Control type="text" placeholder="State or region" autoComplete="address-level1" {...register('region')} />
                     </Form.Group>
                   </Col>
 
@@ -352,9 +316,7 @@ function Contact() {
                         isInvalid={!!errors.message}
                         {...register('message', { required: 'Message is required' })}
                       />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.message?.message}
-                      </Form.Control.Feedback>
+                      <Form.Control.Feedback type="invalid">{errors.message?.message}</Form.Control.Feedback>
                     </Form.Group>
                   </Col>
 
