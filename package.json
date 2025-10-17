@@ -4,12 +4,11 @@
   "description": "A personal portfolio website to showcase skills, projects, and experience.",
   "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [
     "portfolio",
@@ -19,23 +18,30 @@
   "author": "Adrian Reynolds",
   "license": "ISC",
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.9.0",
+    "@stripe/stripe-js": "^3.5.0",
     "bootstrap": "^5.3.3",
+    "framer-motion": "^11.18.2",
     "gh-pages": "^6.3.0",
     "react": "^18.0.0",
     "react-bootstrap": "^2.10.9",
+    "react-datepicker": "^4.25.0",
     "react-dom": "^18.0.0",
-    "react-scripts": "^5.0.1"
+    "react-hook-form": "^7.65.0",
+    "react-icons": "^4.12.0",
+    "react-router-dom": "^7.9.4",
+    "react-toastify": "^10.0.6",
+    "stripe": "^19.1.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^5.0.0",
+    "eslint": "^9.33.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "vite": "^7.1.2"
   }
 }

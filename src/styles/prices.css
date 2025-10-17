@@ -1,0 +1,196 @@
+.pricing-section {
+  background: #f9f9f9;
+  padding: 2rem 0 2.5rem;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.pricing-header h2 {
+  margin: 0 0 0.25rem;
+}
+.pricing-header .lead {
+  color: #475569;
+  margin: 0;
+}
+
+.pricing-card {
+  position: relative;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #f9f9f9; /* light grey card to match your theme */
+  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.pricing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.1);
+}
+.pricing-card.featured {
+  border-color: #2563eb;
+  box-shadow: 0 16px 36px rgba(37,99,235,0.18);
+}
+
+.plan-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border-radius: 999px;
+  padding: 0.35rem 0.6rem;
+  font-weight: 600;
+}
+
+.plan-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #eaf2ff;
+  color: #2563eb;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.plan-title {
+  margin: 0;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.plan-subtitle {
+  margin: 0.25rem 0 0.75rem;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 0.75rem;
+}
+.plan-price .currency {
+  color: #0f172a;
+  font-weight: 700;
+}
+.plan-price .amount {
+  color: #0f172a;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.feature-list,
+.addon-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0.75rem 0;
+}
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+.feature-list .check {
+  color: #16a34a;
+  margin-top: 2px;
+}
+.addons summary {
+  cursor: pointer;
+  user-select: none;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+.addons .plus { color: #2563eb; }
+.addon-list li {
+  color: #334155;
+  margin-left: 1.25rem; /* indent to visually separate from summary */
+  margin-bottom: 0.25rem;
+}
+
+.pricing-note {
+  text-align: center;
+  color: #64748b;
+  margin: 0.75rem 0 0;
+  font-size: 0.95rem;
+}
+
+/* Add-on selector & totals */
+.addons-group {
+  margin-top: 0.5rem;
+}
+.addons-title {
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.25rem;
+}
+.addon-item {
+  margin-bottom: 0.25rem;
+}
+.addon-label {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0.5rem;
+}
+.addon-price {
+  color: #0f172a;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.selected-chips {
+  margin-top: 0.4rem;
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.selected-chips .chip {
+  background: #eaf2ff;
+  color: #1e40af;
+  border: 1px solid #dbeafe;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+.totals {
+  margin-top: 0.4rem;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 0.5rem;
+}
+.totals .row-line {
+  display: flex;
+  justify-content: space-between;
+  margin: 2px 0;
+  color: #1f2937;
+}
+.totals .row-line.monthly {
+  color: #334155;
+}
+.totals .row-line.grand {
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .plan-price .amount { font-size: 1.45rem; }
+  .plan-title { font-size: 1rem; }
+  .plan-subtitle { font-size: 0.9rem; }
+}
+@media (min-width: 1200px) {
+  .pricing-section { padding: 2.5rem 0 3rem; }
+  .plan-price .amount { font-size: 1.8rem; }
+}
+
+/* Responsive fine-tuning */
+@media (max-width: 480px) {
+  .addon-label { font-size: 0.95rem; }
+  .selected-chips .chip { font-size: 0.75rem; }
+}

@@ -1,0 +1,227 @@
+.contact-section {
+  background-color: #f9f9f9;
+  padding-top: 2rem;
+  padding-bottom: 2.5rem;
+}
+
+.contact-info {
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 12px;
+  padding: 1.25rem 1.25rem 1rem;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.25);
+}
+.contact-info h3 {
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+.contact-info a {
+  color: #93c5fd;
+  text-decoration: none;
+}
+.contact-info a:hover {
+  text-decoration: underline;
+}
+.info-line {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;           /* allow wrap to next line */
+  gap: 0.5rem;
+}
+.info-line strong {
+  flex: 0 0 auto;            /* label stays its natural width */
+}
+.contact-email {
+  flex: 1 1 auto;            /* email can take remaining width and wrap */
+  min-width: 0;              /* allow shrinking inside flex */
+  white-space: normal;
+  overflow-wrap: anywhere;   /* break long "words" like emails */
+  word-break: break-word;
+}
+@supports (line-break: anywhere) {
+  .contact-email { line-break: anywhere; }
+}
+
+.contact-icon {
+  color: #60a5fa;
+  font-size: 0.95rem;
+}
+
+.contact-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  border: 1px solid #eef2f7;
+}
+
+.field-hint {
+  font-size: 0.85rem;
+  color: #667085;
+  margin-top: 0.25rem;
+}
+
+.submit-btn {
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  box-shadow: 0 6px 14px rgba(59, 130, 246, 0.35);
+}
+
+@media (max-width: 768px) {
+  .contact-info, .contact-card {
+    border-radius: 10px;
+  }
+}
+
+/* Ensure Contact section styles override any #contact rules in index.css */
+#contact.contact-section {
+  background-color: #f9f9f9;
+  padding-top: 2rem;
+  padding-bottom: 2.5rem;
+}
+
+/* Phones ≤ 480px */
+@media (max-width: 480px) {
+  .contact-section {
+    padding-top: 1.25rem;
+    padding-bottom: 1.5rem;
+  }
+  .contact-section h2 {
+    font-size: 1.35rem;
+    line-height: 1.2;
+  }
+  .contact-info,
+  .contact-card {
+    padding: 1rem;
+  }
+  .contact-info h3 {
+    font-size: 1.05rem;
+  }
+  .info-line {
+    gap: 0.4rem;
+  }
+  .contact-icon {
+    font-size: 0.9rem;
+  }
+  /* Inputs and datepicker sizing */
+  .contact-card .form-control,
+  .contact-card .react-datepicker-wrapper .react-datepicker__input-container input {
+    font-size: 0.95rem;
+    padding: 0.55rem 0.75rem;
+  }
+  .contact-card textarea.form-control {
+    min-height: 120px;
+  }
+  .field-hint {
+    font-size: 0.8rem;
+  }
+  .submit-btn {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+/* Very small devices ≤ 360px */
+@media (max-width: 360px) {
+  .contact-info,
+  .contact-card {
+    padding: 0.85rem;
+  }
+  .contact-section h2 {
+    font-size: 1.25rem;
+  }
+  .contact-info h3 {
+    font-size: 1rem;
+  }
+}
+
+/* Small tablets 481–768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  .contact-section {
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+  }
+  .contact-info,
+  .contact-card {
+    padding: 1.1rem;
+  }
+  .submit-btn {
+    width: 100%;
+  }
+}
+
+/* Tablets 769–991px */
+@media (min-width: 769px) and (max-width: 991px) {
+  .contact-section {
+    padding-top: 2rem;
+    padding-bottom: 2.25rem;
+  }
+  .contact-info,
+  .contact-card {
+    padding: 1.25rem;
+  }
+}
+
+/* Desktops ≥ 992px */
+@media (min-width: 992px) {
+  .contact-info,
+  .contact-card {
+    padding: 1.4rem;
+  }
+  .contact-card .form-control,
+  .contact-card .react-datepicker-wrapper .react-datepicker__input-container input {
+    font-size: 1rem;
+  }
+}
+
+/* Large desktops ≥ 1200px */
+@media (min-width: 1200px) {
+  .contact-section {
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
+  }
+  .contact-info,
+  .contact-card {
+    border-radius: 14px;
+    padding: 1.5rem;
+  }
+}
+
+/* Ultra-wide ≥ 1440px */
+@media (min-width: 1440px) {
+  .contact-section {
+    padding-top: 3rem;
+    padding-bottom: 3.5rem;
+  }
+  .contact-info,
+  .contact-card {
+    padding: 1.75rem;
+  }
+}
+
+/* Prevent overflow from long email addresses */
+.info-line {
+  align-items: flex-start;
+  flex-wrap: wrap;           /* allow wrap to next line */
+  gap: 0.5rem;
+}
+.info-line strong {
+  flex: 0 0 auto;            /* label stays its natural width */
+}
+.contact-email {
+  flex: 1 1 auto;            /* email can take remaining width and wrap */
+  min-width: 0;              /* allow shrinking inside flex */
+  white-space: normal;
+  overflow-wrap: anywhere;   /* break long "words" like emails */
+  word-break: break-word;
+}
+@supports (line-break: anywhere) {
+  .contact-email { line-break: anywhere; }
+}
+
+/* Tiny phones: put email on its own line neatly */
+@media (max-width: 480px) {
+  .contact-email { display: block; }
+}

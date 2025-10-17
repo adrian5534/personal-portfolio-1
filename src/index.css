@@ -30,7 +30,6 @@ main {
 section {
   margin-bottom: 40px;
   padding: 20px;
-  border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #f9f9f9;
 }
@@ -217,7 +216,7 @@ h2 {
 
 /* Contact Component Styles */
 #contact {
-  background-color: #f0f0f0;
+  background-color: #f9f9f9;
   padding: 40px 20px;
   border-radius: 8px;
 }
@@ -324,5 +323,32 @@ h2 {
 
   .footer {
     padding: 10px 0; /* Reduce padding for smaller screens */
+  }
+}
+
+/* REMOVE this stray, invalid line */
+/* #f9f9f9 */
+
+/* Ensure sticky remains active even with custom styles */
+.Navbar.sticky-top {
+  position: sticky !important;
+  top: 0;
+  z-index: 1020;
+}
+
+/* Center the nav across the full navbar width on desktop */
+@media (min-width: 992px) {
+  .Navbar .center-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Normal flow on mobile */
+@media (max-width: 991.98px) {
+  .Navbar .center-nav {
+    position: static;
+    transform: none;
   }
 }
