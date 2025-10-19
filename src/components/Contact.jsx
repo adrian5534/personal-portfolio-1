@@ -166,8 +166,8 @@ function Contact() {
                 <FaEnvelope className="contact-icon" aria-hidden />
                 <strong>Email:</strong>
                 <span className="contact-email">
-                  <a href="mailto:adrianreynolds5534@ysbacademy.online">
-                    adrianreynolds5534@ysbacademy.online
+                  <a href="mailto:adrianreynolds@ysbacademy.online">
+                    adrianreynolds@ysbacademy.online
                   </a>
                 </span>
               </p>
